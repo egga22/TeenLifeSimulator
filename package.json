@@ -1,0 +1,13 @@
+{
+  "name": "teen-life-simulator",
+  "version": "0.1.0",
+  "description": "Core simulation systems for a Teen Life Simulator game.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": ["game", "simulation", "teen", "javascript"],
+  "author": "",
+  "license": "MIT"
+}
