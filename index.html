@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teen Life Simulator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Prototype</p>
+          <h1>Teen Life Simulator</h1>
+          <p>Interact with the core systems right in your browser—no build tools needed.</p>
+        </div>
+        <div class="hero-actions">
+          <button id="reset-state" class="ghost">Reset state</button>
+          <a href="spec.md" class="link">View design spec</a>
+        </div>
+      </header>
+
+      <section class="panel">
+        <h2>Current Stats</h2>
+        <div class="stats" id="stats">
+          <div class="stat"><span>Popularity</span><strong id="stat-popularity">50</strong></div>
+          <div class="stat"><span>Happiness</span><strong id="stat-happiness">70</strong></div>
+          <div class="stat"><span>Athleticism</span><strong id="stat-athleticism">3</strong></div>
+          <div class="stat"><span>Money</span><strong id="stat-money">$0</strong></div>
+          <div class="stat"><span>Study hours this month</span><strong id="stat-study">0</strong></div>
+          <div class="stat"><span>Romance score</span><strong id="stat-romance">50</strong></div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h3>Study & Grades</h3>
+          <div class="row">
+            <label for="study-hours">Add study hours</label>
+            <div class="controls">
+              <input type="number" id="study-hours" min="0" value="5" />
+              <button id="add-study">Log hours</button>
+            </div>
+          </div>
+          <button id="close-month" class="primary">Close month</button>
+        </article>
+
+        <article class="panel">
+          <h3>Rumors</h3>
+          <div class="row">
+            <label for="rumor-severity">Severity</label>
+            <select id="rumor-severity">
+              <option value="everyday">Everyday</option>
+              <option value="medium">Medium</option>
+              <option value="heavyLite">Heavy-lite</option>
+            </select>
+          </div>
+          <div class="row checkbox">
+            <label for="rumor-positive">Positive rumor</label>
+            <input type="checkbox" id="rumor-positive" />
+          </div>
+          <button id="apply-rumor">Apply rumor</button>
+        </article>
+
+        <article class="panel">
+          <h3>Fashion</h3>
+          <div class="row">
+            <label for="outfit-boost">Initial boost</label>
+            <input type="number" id="outfit-boost" min="0" max="20" value="10" />
+          </div>
+          <div class="row">
+            <label for="weeks-since">Weeks since outfit</label>
+            <input type="number" id="weeks-since" min="0" max="4" value="1" />
+          </div>
+          <button id="apply-outfit">Wear outfit</button>
+        </article>
+
+        <article class="panel">
+          <h3>Chores</h3>
+          <div class="row">
+            <label for="chore-tier">Choose tier</label>
+            <select id="chore-tier">
+              <option value="1">Tier 1</option>
+              <option value="2">Tier 2</option>
+              <option value="3">Tier 3</option>
+            </select>
+          </div>
+          <button id="do-chore">Complete chore</button>
+        </article>
+
+        <article class="panel">
+          <h3>Friendship</h3>
+          <div class="row">
+            <label for="friend-name">Name</label>
+            <input type="text" id="friend-name" placeholder="Alex" />
+          </div>
+          <div class="row">
+            <label for="friend-type">Type</label>
+            <select id="friend-type">
+              <option value="friend">Friend</option>
+              <option value="bestFriend">Best friend</option>
+              <option value="partner">Partner</option>
+            </select>
+          </div>
+          <div class="row">
+            <label for="friend-days">Days since hangout</label>
+            <input type="number" id="friend-days" min="0" value="5" />
+          </div>
+          <div class="row">
+            <label for="friend-effect">Interaction effect</label>
+            <input type="number" id="friend-effect" value="5" />
+          </div>
+          <button id="update-friend">Update friendship</button>
+        </article>
+
+        <article class="panel">
+          <h3>Romance</h3>
+          <div class="row">
+            <label for="romance-days">Days since interaction</label>
+            <input type="number" id="romance-days" min="0" value="4" />
+          </div>
+          <div class="row">
+            <label for="romance-penalty">Rumor penalty</label>
+            <input type="number" id="romance-penalty" min="0" value="0" />
+          </div>
+          <div class="row">
+            <label for="romance-effect">Interaction effect</label>
+            <input type="number" id="romance-effect" value="2" />
+          </div>
+          <button id="update-romance">Update romance</button>
+        </article>
+
+        <article class="panel">
+          <h3>Skip School</h3>
+          <p>See the random outcome and parent punishment rules in action.</p>
+          <button id="skip-school">Skip today</button>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Activity Log</h2>
+          <button id="clear-log" class="ghost">Clear log</button>
+        </div>
+        <div id="log" class="log"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
