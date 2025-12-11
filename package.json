@@ -1,0 +1,17 @@
+{
+  "name": "teen-life-simulator",
+  "version": "0.1.0",
+  "description": "Core simulation scaffolding for the Teen Life Simulator.",
+  "type": "module",
+  "main": "src/game.js",
+  "scripts": {
+    "start": "node src/demo.js"
+  },
+  "keywords": [
+    "simulation",
+    "game",
+    "teen-life"
+  ],
+  "author": "",
+  "license": "MIT"
+}
