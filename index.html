@@ -1,151 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teen Life Simulator</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main class="page">
-      <header class="hero">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teen Life Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Teen Life Simulator</h1>
+    <p>Deeper, longer, wilder. Balance four years of high school across academics, clubs, sports, rumors, fashion, chores, and big milestone events.</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Current Status</h2>
+      <div class="grid">
         <div>
-          <p class="eyebrow">Prototype</p>
-          <h1>Teen Life Simulator</h1>
-          <p>Interact with the core systems right in your browser—no build tools needed.</p>
+          <h3>Stats</h3>
+          <ul id="stat-list"></ul>
         </div>
-        <div class="hero-actions">
-          <button id="reset-state" class="ghost">Reset state</button>
-          <a href="spec.md" class="link">View design spec</a>
+        <div>
+          <h3>Academics</h3>
+          <p><strong>Study hours (month):</strong> <span id="study-hours">0</span></p>
+          <p><strong>Current grade:</strong> <span id="grade">F</span></p>
+          <p><strong>Allowance (weekly):</strong> $<span id="allowance">0</span></p>
+          <p><strong>Curfew:</strong> <span id="curfew">8:00 PM</span></p>
+          <p><strong>Teacher comment:</strong> <span id="teacher-comment">""</span></p>
         </div>
-      </header>
-
-      <section class="panel">
-        <h2>Current Stats</h2>
-        <div class="stats" id="stats">
-          <div class="stat"><span>Popularity</span><strong id="stat-popularity">50</strong></div>
-          <div class="stat"><span>Happiness</span><strong id="stat-happiness">70</strong></div>
-          <div class="stat"><span>Athleticism</span><strong id="stat-athleticism">3</strong></div>
-          <div class="stat"><span>Money</span><strong id="stat-money">$0</strong></div>
-          <div class="stat"><span>Study hours this month</span><strong id="stat-study">0</strong></div>
-          <div class="stat"><span>Romance score</span><strong id="stat-romance">50</strong></div>
+        <div>
+          <h3>Time</h3>
+          <p><strong>Year:</strong> <span id="year">1</span>/4</p>
+          <p><strong>Semester:</strong> <span id="semester">1</span>/8</p>
+          <p><strong>Month:</strong> <span id="month">Sep</span> (Week <span id="week">1</span>)</p>
+          <p><strong>Day:</strong> <span id="day">1</span> (<span id="weekday">Mon</span>)</p>
+          <p><strong>Time:</strong> <span id="clock">7:30 AM</span></p>
+          <p><strong>Blocks today:</strong> <span id="blocks">0</span></p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="grid">
-        <article class="panel">
-          <h3>Study & Grades</h3>
-          <div class="row">
-            <label for="study-hours">Add study hours</label>
-            <div class="controls">
-              <input type="number" id="study-hours" min="0" value="5" />
-              <button id="add-study">Log hours</button>
-            </div>
-          </div>
-          <button id="close-month" class="primary">Close month</button>
-        </article>
-
-        <article class="panel">
-          <h3>Rumors</h3>
-          <div class="row">
-            <label for="rumor-severity">Severity</label>
-            <select id="rumor-severity">
-              <option value="everyday">Everyday</option>
-              <option value="medium">Medium</option>
-              <option value="heavyLite">Heavy-lite</option>
-            </select>
-          </div>
-          <div class="row checkbox">
-            <label for="rumor-positive">Positive rumor</label>
-            <input type="checkbox" id="rumor-positive" />
-          </div>
-          <button id="apply-rumor">Apply rumor</button>
-        </article>
-
-        <article class="panel">
-          <h3>Fashion</h3>
-          <div class="row">
-            <label for="outfit-boost">Initial boost</label>
-            <input type="number" id="outfit-boost" min="0" max="20" value="10" />
-          </div>
-          <div class="row">
-            <label for="weeks-since">Weeks since outfit</label>
-            <input type="number" id="weeks-since" min="0" max="4" value="1" />
-          </div>
-          <button id="apply-outfit">Wear outfit</button>
-        </article>
-
-        <article class="panel">
-          <h3>Chores</h3>
-          <div class="row">
-            <label for="chore-tier">Choose tier</label>
-            <select id="chore-tier">
-              <option value="1">Tier 1</option>
-              <option value="2">Tier 2</option>
-              <option value="3">Tier 3</option>
-            </select>
-          </div>
-          <button id="do-chore">Complete chore</button>
-        </article>
-
-        <article class="panel">
-          <h3>Friendship</h3>
-          <div class="row">
-            <label for="friend-name">Name</label>
-            <input type="text" id="friend-name" placeholder="Alex" />
-          </div>
-          <div class="row">
-            <label for="friend-type">Type</label>
-            <select id="friend-type">
-              <option value="friend">Friend</option>
-              <option value="bestFriend">Best friend</option>
-              <option value="partner">Partner</option>
-            </select>
-          </div>
-          <div class="row">
-            <label for="friend-days">Days since hangout</label>
-            <input type="number" id="friend-days" min="0" value="5" />
-          </div>
-          <div class="row">
-            <label for="friend-effect">Interaction effect</label>
-            <input type="number" id="friend-effect" value="5" />
-          </div>
-          <button id="update-friend">Update friendship</button>
-        </article>
-
-        <article class="panel">
+    <section class="panel">
+      <h2>Friends & Romance</h2>
+      <div class="grid two">
+        <div>
+          <h3>Friends</h3>
+          <ul id="friends"></ul>
+        </div>
+        <div>
           <h3>Romance</h3>
-          <div class="row">
-            <label for="romance-days">Days since interaction</label>
-            <input type="number" id="romance-days" min="0" value="4" />
-          </div>
-          <div class="row">
-            <label for="romance-penalty">Rumor penalty</label>
-            <input type="number" id="romance-penalty" min="0" value="0" />
-          </div>
-          <div class="row">
-            <label for="romance-effect">Interaction effect</label>
-            <input type="number" id="romance-effect" value="2" />
-          </div>
-          <button id="update-romance">Update romance</button>
-        </article>
-
-        <article class="panel">
-          <h3>Skip School</h3>
-          <p>See the random outcome and parent punishment rules in action.</p>
-          <button id="skip-school">Skip today</button>
-        </article>
-      </section>
-
-      <section class="panel">
-        <div class="panel-header">
-          <h2>Activity Log</h2>
-          <button id="clear-log" class="ghost">Clear log</button>
+          <p><strong>Partner:</strong> <span id="partner">None</span></p>
+          <p><strong>Relationship level:</strong> <span id="romance-level">0</span></p>
+          <p><strong>Texts this week:</strong> <span id="text-count">0</span>/7</p>
         </div>
-        <div id="log" class="log"></div>
-      </section>
-    </main>
+      </div>
+    </section>
 
-    <script type="module" src="./src/app.js"></script>
-  </body>
+    <section class="panel actions">
+      <h2>Actions</h2>
+      <div class="action-grid">
+        <button data-action="study">Study (1h)</button>
+        <button data-action="study-sprint">Study Sprint (2h)</button>
+        <button data-action="study-marathon">Study Marathon (3h)</button>
+        <button data-action="group-project">Group Project (2h)</button>
+        <button data-action="hangout">Hangout (1h)</button>
+        <button data-action="best-friend">Best Friend Hang (75m)</button>
+        <button data-action="date-night">Date Night (90m)</button>
+        <button data-action="text">Send Texts (30m)</button>
+        <button data-action="rumor">Rumor (30m)</button>
+        <button data-action="chore">Do Chore (30-90m)</button>
+        <button data-action="job">Part-Time Shift (45m)</button>
+        <button data-action="tutor">Tutor Session (50m)</button>
+        <button data-action="club">Club Meeting (1h)</button>
+        <button data-action="lead">Leadership Huddle (45m)</button>
+        <button data-action="sports">Sports Practice (1h)</button>
+        <button data-action="creative">Creative Practice (45m)</button>
+        <button data-action="stream">Stream Content (40m)</button>
+        <button data-action="fashion">Upgrade Outfit (15m)</button>
+        <button data-action="late-cram">Late-Night Cram (90m)</button>
+        <button data-action="volunteer">Volunteer (1h)</button>
+        <button data-action="power-nap">Power Nap (30m)</button>
+        <button data-action="evening-walk">Evening Walk (45m)</button>
+        <button data-action="family-dinner">Family Dinner (1h)</button>
+        <button data-action="self-care">Self-Care Reset (35m)</button>
+        <button data-action="skip">Skip School (all day)</button>
+        <button data-action="advance">Advance 15m</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Discipline & Highlights</h2>
+      <div class="grid two">
+        <div>
+          <h3>Punishments</h3>
+          <p id="punishment-summary">No punishments active.</p>
+        </div>
+        <div>
+          <h3>Year-End Reel</h3>
+          <p><strong>Score:</strong> <span id="year-score">0</span>/100</p>
+          <ul id="highlight-reel"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Wellness & Resilience</h2>
+      <div class="grid two">
+        <div>
+          <h3>Wellness</h3>
+          <p><strong>Energy:</strong> <span id="energy">70</span>/100</p>
+          <p><strong>Stress:</strong> <span id="stress">20</span>/100</p>
+          <p><strong>Sleep debt:</strong> <span id="sleep-debt">0</span>h</p>
+        </div>
+        <div>
+          <h3>Resilience</h3>
+          <p><strong>Burnout risk:</strong> <span id="burnout">Low</span></p>
+          <p><strong>Grounding:</strong> <span id="grounding">Stable</span></p>
+          <p><strong>Wellness streak:</strong> <span id="wellness-streak">0</span> day(s)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Future Track</h2>
+      <div class="grid two">
+        <div>
+          <h3>Scholarships & Resume</h3>
+          <p><strong>Resume strength:</strong> <span id="resume">10</span>/100</p>
+          <p><strong>Leadership cred:</strong> <span id="leadership">5</span>/100</p>
+          <p><strong>Scholarship odds:</strong> <span id="scholarship">5</span>%</p>
+        </div>
+        <div>
+          <h3>Side Hustle</h3>
+          <p><strong>Stream followers:</strong> <span id="followers">0</span></p>
+          <p><strong>Micro-intern hours:</strong> <span id="intern-hours">0</span></p>
+          <p><strong>Passion project momentum:</strong> <span id="momentum">Calm</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Calendar & Events</h2>
+      <div class="grid two">
+        <div>
+          <h3>Upcoming</h3>
+          <ul id="events"></ul>
+        </div>
+        <div>
+          <h3>Achievements</h3>
+          <ul id="achievements"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Cadence & Pace</h2>
+      <div class="grid two">
+        <div>
+          <h3>Texts</h3>
+          <p><strong>Friends:</strong> <span id="friend-text-plan">0</span></p>
+          <p><strong>Partner:</strong> <span id="partner-text-plan">0</span></p>
+        </div>
+        <div>
+          <h3>Rumors</h3>
+          <p id="rumor-cadence">Rumors roll every 1-2 weeks.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Report Card & Phone</h2>
+      <div class="grid two">
+        <div>
+          <h3>Monthly Cards</h3>
+          <ul id="grade-history"></ul>
+        </div>
+        <div>
+          <h3>Phone Grades App</h3>
+          <p class="phone-grade">Grade: <span id="phone-grade">F</span></p>
+          <p class="phone-grade">Study Hours: <span id="phone-study">0</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Announcements & Log</h2>
+      <div class="grid two">
+        <div>
+          <h3>School Feed</h3>
+          <ul id="announcements"></ul>
+        </div>
+        <div>
+          <h3>Event Log</h3>
+          <div id="log" class="log"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Based on the Teen Life Simulator design spec. Keep your popularity climbing while balancing grades, clubs, chores, and drama.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
 </html>
