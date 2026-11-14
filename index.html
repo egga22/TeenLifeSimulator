@@ -1,28 +1,207 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Security Assessment — Proof of Compromise</title>
-<style>
-  body { background: #0d1117; color: #e6edf3; font-family: system-ui, sans-serif; display: flex; justify-content: center; padding: 8vh 2rem; }
-  .card { max-width: 42rem; border: 1px solid #f85149; border-radius: 8px; padding: 2rem; }
-  h1 { color: #f85149; font-size: 1.3rem; }
-  code { background: #161b22; padding: 0.15rem 0.4rem; border-radius: 4px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teen Life Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="card">
-  <h1>&#9888; SECURITY ASSESSMENT &mdash; PROOF OF COMPROMISE</h1>
-  <p>This page was modified through a push to the source repository using a
-  compromised repository credential. No visitor data was collected and no
-  malicious code was executed.</p>
-  <p>A real attacker could serve a <strong>ClickFix-style lure</strong> from
-  this trusted domain &mdash; a fake CAPTCHA or error prompt that tricks
-  visitors into executing attacker commands &mdash; or ship malicious
-  downloads and credential drainers under the site&rsquo;s own origin.</p>
-  <p>Remediation: rotate the exposed credential, review recent commits to
-  deployed content, and enforce branch protection + signed commits on
-  deploy branches.</p>
-</div>
+  <header>
+    <h1>Teen Life Simulator</h1>
+    <p>Deeper, longer, wilder. Balance four years of high school across academics, clubs, sports, rumors, fashion, chores, and big milestone events.</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Current Status</h2>
+      <div class="grid">
+        <div>
+          <h3>Stats</h3>
+          <ul id="stat-list"></ul>
+        </div>
+        <div>
+          <h3>Academics</h3>
+          <p><strong>Study hours (month):</strong> <span id="study-hours">0</span></p>
+          <p><strong>Current grade:</strong> <span id="grade">F</span></p>
+          <p><strong>Allowance (weekly):</strong> $<span id="allowance">0</span></p>
+          <p><strong>Curfew:</strong> <span id="curfew">8:00 PM</span></p>
+          <p><strong>Teacher comment:</strong> <span id="teacher-comment">""</span></p>
+        </div>
+        <div>
+          <h3>Time</h3>
+          <p><strong>Year:</strong> <span id="year">1</span>/4</p>
+          <p><strong>Semester:</strong> <span id="semester">1</span>/8</p>
+          <p><strong>Month:</strong> <span id="month">Sep</span> (Week <span id="week">1</span>)</p>
+          <p><strong>Day:</strong> <span id="day">1</span> (<span id="weekday">Mon</span>)</p>
+          <p><strong>Time:</strong> <span id="clock">7:30 AM</span></p>
+          <p><strong>Blocks today:</strong> <span id="blocks">0</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Friends & Romance</h2>
+      <div class="grid two">
+        <div>
+          <h3>Friends</h3>
+          <ul id="friends"></ul>
+        </div>
+        <div>
+          <h3>Romance</h3>
+          <p><strong>Partner:</strong> <span id="partner">None</span></p>
+          <p><strong>Relationship level:</strong> <span id="romance-level">0</span></p>
+          <p><strong>Texts this week:</strong> <span id="text-count">0</span>/7</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel actions">
+      <h2>Actions</h2>
+      <div class="action-grid">
+        <button data-action="study">Study (1h)</button>
+        <button data-action="study-sprint">Study Sprint (2h)</button>
+        <button data-action="study-marathon">Study Marathon (3h)</button>
+        <button data-action="group-project">Group Project (2h)</button>
+        <button data-action="hangout">Hangout (1h)</button>
+        <button data-action="best-friend">Best Friend Hang (75m)</button>
+        <button data-action="date-night">Date Night (90m)</button>
+        <button data-action="text">Send Texts (30m)</button>
+        <button data-action="rumor">Rumor (30m)</button>
+        <button data-action="chore">Do Chore (30-90m)</button>
+        <button data-action="job">Part-Time Shift (45m)</button>
+        <button data-action="tutor">Tutor Session (50m)</button>
+        <button data-action="club">Club Meeting (1h)</button>
+        <button data-action="lead">Leadership Huddle (45m)</button>
+        <button data-action="sports">Sports Practice (1h)</button>
+        <button data-action="creative">Creative Practice (45m)</button>
+        <button data-action="stream">Stream Content (40m)</button>
+        <button data-action="fashion">Upgrade Outfit (15m)</button>
+        <button data-action="late-cram">Late-Night Cram (90m)</button>
+        <button data-action="volunteer">Volunteer (1h)</button>
+        <button data-action="power-nap">Power Nap (30m)</button>
+        <button data-action="evening-walk">Evening Walk (45m)</button>
+        <button data-action="family-dinner">Family Dinner (1h)</button>
+        <button data-action="self-care">Self-Care Reset (35m)</button>
+        <button data-action="skip">Skip School (all day)</button>
+        <button data-action="advance">Advance 15m</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Discipline & Highlights</h2>
+      <div class="grid two">
+        <div>
+          <h3>Punishments</h3>
+          <p id="punishment-summary">No punishments active.</p>
+        </div>
+        <div>
+          <h3>Year-End Reel</h3>
+          <p><strong>Score:</strong> <span id="year-score">0</span>/100</p>
+          <ul id="highlight-reel"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Wellness & Resilience</h2>
+      <div class="grid two">
+        <div>
+          <h3>Wellness</h3>
+          <p><strong>Energy:</strong> <span id="energy">70</span>/100</p>
+          <p><strong>Stress:</strong> <span id="stress">20</span>/100</p>
+          <p><strong>Sleep debt:</strong> <span id="sleep-debt">0</span>h</p>
+        </div>
+        <div>
+          <h3>Resilience</h3>
+          <p><strong>Burnout risk:</strong> <span id="burnout">Low</span></p>
+          <p><strong>Grounding:</strong> <span id="grounding">Stable</span></p>
+          <p><strong>Wellness streak:</strong> <span id="wellness-streak">0</span> day(s)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Future Track</h2>
+      <div class="grid two">
+        <div>
+          <h3>Scholarships & Resume</h3>
+          <p><strong>Resume strength:</strong> <span id="resume">10</span>/100</p>
+          <p><strong>Leadership cred:</strong> <span id="leadership">5</span>/100</p>
+          <p><strong>Scholarship odds:</strong> <span id="scholarship">5</span>%</p>
+        </div>
+        <div>
+          <h3>Side Hustle</h3>
+          <p><strong>Stream followers:</strong> <span id="followers">0</span></p>
+          <p><strong>Micro-intern hours:</strong> <span id="intern-hours">0</span></p>
+          <p><strong>Passion project momentum:</strong> <span id="momentum">Calm</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Calendar & Events</h2>
+      <div class="grid two">
+        <div>
+          <h3>Upcoming</h3>
+          <ul id="events"></ul>
+        </div>
+        <div>
+          <h3>Achievements</h3>
+          <ul id="achievements"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Cadence & Pace</h2>
+      <div class="grid two">
+        <div>
+          <h3>Texts</h3>
+          <p><strong>Friends:</strong> <span id="friend-text-plan">0</span></p>
+          <p><strong>Partner:</strong> <span id="partner-text-plan">0</span></p>
+        </div>
+        <div>
+          <h3>Rumors</h3>
+          <p id="rumor-cadence">Rumors roll every 1-2 weeks.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Report Card & Phone</h2>
+      <div class="grid two">
+        <div>
+          <h3>Monthly Cards</h3>
+          <ul id="grade-history"></ul>
+        </div>
+        <div>
+          <h3>Phone Grades App</h3>
+          <p class="phone-grade">Grade: <span id="phone-grade">F</span></p>
+          <p class="phone-grade">Study Hours: <span id="phone-study">0</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Announcements & Log</h2>
+      <div class="grid two">
+        <div>
+          <h3>School Feed</h3>
+          <ul id="announcements"></ul>
+        </div>
+        <div>
+          <h3>Event Log</h3>
+          <div id="log" class="log"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Based on the Teen Life Simulator design spec. Keep your popularity climbing while balancing grades, clubs, chores, and drama.</p>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
